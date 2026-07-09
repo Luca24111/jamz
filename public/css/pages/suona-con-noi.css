@@ -1,0 +1,4 @@
+.application-form textarea {
+    resize: vertical;
+    min-height: 14rem;
+}

@@ -1,0 +1,31 @@
+<section class="page-hero">
+    <div class="shell page-hero-inner">
+        {% if hero.eyebrow is defined %}
+            <p class="eyebrow">{{ hero.eyebrow }}</p>
+        {% endif %}
+        <h1>
+            {{ hero.title
+                |replace({
+                    '[[Programmiamo]]': '<span class="hero-highlight">Programmiamo</span>',
+                    '[[costruiamo]]': '<span class="hero-highlight">costruiamo</span>',
+                    '[[suonare con noi]]': '<span class="hero-highlight">suonare con noi</span>'
+                })
+                |raw
+            }}
+        </h1>
+        {% if hero.intro is defined %}
+            <p class="page-intro">{{ hero.intro }}</p>
+        {% endif %}
+
+        {% if (hero.primary_cta is defined and hero.primary_cta) or (hero.secondary_cta is defined and hero.secondary_cta) %}
+            <div class="hero-actions">
+                {% if hero.primary_cta is defined and hero.primary_cta %}
+                    <a class="button button-primary" href="{{ hero.primary_cta.path }}">{{ hero.primary_cta.label }}</a>
+                {% endif %}
+                {% if hero.secondary_cta is defined and hero.secondary_cta %}
+                    <a class="button button-secondary" href="{{ hero.secondary_cta.path }}">{{ hero.secondary_cta.label }}</a>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</section>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520">
+  <rect width="800" height="520" fill="#f4efe7"/>
+  <rect x="84" y="68" width="632" height="384" rx="34" fill="#111316"/>
+  <path d="M84 334h632" stroke="#e15a2d" stroke-width="16"/>
+  <text x="126" y="180" fill="#f4efe7" font-size="36" font-family="IBM Plex Sans, Arial, sans-serif">TESORIERE / FUNDRAISING</text>
+  <text x="122" y="288" fill="#f4efe7" font-size="72" font-family="Space Grotesk, Arial, sans-serif">MARTA LEONI</text>
+  <text x="126" y="392" fill="#f4efe7" font-size="28" font-family="IBM Plex Sans, Arial, sans-serif">Sostenibilità economica e bandi</text>
+</svg>

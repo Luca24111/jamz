@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760">
+  <rect width="1200" height="760" fill="#f4efe7"/>
+  <rect x="72" y="72" width="1056" height="616" rx="34" fill="#111316"/>
+  <rect x="72" y="420" width="1056" height="268" rx="0" fill="#e15a2d"/>
+  <text x="112" y="250" fill="#f4efe7" font-size="146" font-family="Space Grotesk, Arial, sans-serif">OPEN</text>
+  <text x="112" y="380" fill="#f4efe7" font-size="146" font-family="Space Grotesk, Arial, sans-serif">STAGE</text>
+  <text x="112" y="576" fill="#111316" font-size="56" font-family="IBM Plex Sans, Arial, sans-serif">Jamz Spring</text>
+</svg>

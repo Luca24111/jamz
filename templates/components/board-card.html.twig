@@ -1,0 +1,9 @@
+<article class="board-card">
+    <img src="{{ asset(member.photo) }}" alt="Ritratto di {{ member.fullName }}" class="board-photo">
+    <div class="board-body">
+        <p class="eyebrow">{{ member.role }}</p>
+        <h3>{{ member.fullName }}</h3>
+        <p>{{ member.bio }}</p>
+        <a class="text-link" href="mailto:{{ member.email }}">{{ member.email }}</a>
+    </div>
+</article>

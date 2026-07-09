@@ -1,0 +1,19 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block content %}
+    {% include 'components/page-hero.html.twig' with {
+        hero: {
+            eyebrow: 'Albo associati',
+            title: 'Un elenco pubblico essenziale, costruito solo con i campi autorizzati alla pubblicazione.',
+            intro: 'La visibilità dei soci viene governata da un flag nel database: in questa demo l’albo è pubblico, ma può essere facilmente reso riservato.'
+        }
+    } %}
+
+    <section class="shell associates-grid section-spacing">
+        {% for associate in associates %}
+            {% include 'components/associate-card.html.twig' with { associate: associate } %}
+        {% else %}
+            <p class="empty-state">Nessun associato pubblico disponibile.</p>
+        {% endfor %}
+    </section>
+{% endblock %}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page_title|default(app_name) }}</title>
+    <meta name="description" content="Jamz, associazione culturale e musicale con eventi, soci, documenti e candidatura musicisti.">
+    <link rel="stylesheet" href="{{ asset('css/base/app.css') }}">
+    {% if base_css_files is defined %}
+        {% for css_file in base_css_files %}
+            <link rel="stylesheet" href="{{ asset(css_file) }}">
+        {% endfor %}
+    {% endif %}
+    {% if page_css is defined and page_css %}
+        <link rel="stylesheet" href="{{ asset('css/pages/' ~ page_css) }}">
+    {% endif %}
+    <script defer src="{{ asset('js/base/app.js') }}"></script>
+    {% if base_js_files is defined %}
+        {% for js_file in base_js_files %}
+            <script defer src="{{ asset(js_file) }}"></script>
+        {% endfor %}
+    {% endif %}
+    {% if page_js is defined and page_js %}
+        <script defer src="{{ asset('js/pages/' ~ page_js) }}"></script>
+    {% endif %}
+</head>
+<body data-route="{{ app.request ? app.request.pathInfo : '/' }}">
+    {% include 'layout/header.html.twig' %}
+
+    <main>
+        {% include 'components/flash-messages.html.twig' %}
+        {% block content %}{% endblock %}
+    </main>
+
+    {% include 'layout/footer.html.twig' %}
+</body>
+</html>

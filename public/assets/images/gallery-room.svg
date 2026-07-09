@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+  <rect width="640" height="640" fill="#f4efe7"/>
+  <rect x="92" y="92" width="456" height="456" rx="36" fill="#111316"/>
+  <rect x="152" y="154" width="336" height="190" rx="24" fill="#e15a2d"/>
+  <text x="152" y="442" fill="#f4efe7" font-size="84" font-family="Space Grotesk, Arial, sans-serif">ROOM</text>
+</svg>

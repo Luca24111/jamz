@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+  <rect width="640" height="640" fill="#111316"/>
+  <circle cx="160" cy="180" r="90" fill="#e15a2d"/>
+  <rect x="250" y="114" width="280" height="320" rx="24" fill="#f4efe7"/>
+  <text x="90" y="520" fill="#f4efe7" font-size="78" font-family="Space Grotesk, Arial, sans-serif">LIVE</text>
+</svg>

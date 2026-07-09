@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-labelledby="title desc">
+  <title id="title">Alba Rossi</title>
+  <desc id="desc">Poster grafico per il profilo del consiglio direttivo.</desc>
+  <rect width="800" height="520" fill="#191b1f"/>
+  <circle cx="170" cy="130" r="86" fill="#e15a2d"/>
+  <rect x="80" y="280" width="640" height="150" rx="28" fill="#f4efe7"/>
+  <text x="82" y="92" fill="#f4efe7" font-size="42" font-family="Space Grotesk, Arial, sans-serif">PRESIDENTE</text>
+  <text x="110" y="355" fill="#191b1f" font-size="64" font-family="Space Grotesk, Arial, sans-serif">ALBA ROSSI</text>
+  <text x="114" y="405" fill="#5d564b" font-size="24" font-family="IBM Plex Sans, Arial, sans-serif">Visione artistica e partnership</text>
+</svg>

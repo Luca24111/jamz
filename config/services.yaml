@@ -1,0 +1,23 @@
+parameters:
+    app.mail_to: '%env(MAIL_TO)%'
+    app.mail_from: '%env(MAIL_FROM)%'
+    app.mail_transport: '%env(MAIL_TRANSPORT)%'
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+    App\Service\MailService:
+        arguments:
+            $projectDir: '%kernel.project_dir%'
+            $mailTo: '%app.mail_to%'
+            $mailFrom: '%app.mail_from%'
+            $transport: '%app.mail_transport%'

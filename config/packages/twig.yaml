@@ -1,0 +1,22 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+    globals:
+        app_name: '%env(APP_NAME)%'
+        navigation:
+            - { label: 'Home', path: '/' }
+            - { label: 'Chi siamo', path: '/chi-siamo' }
+            - { label: 'Consiglio', path: '/consiglio-direttivo' }
+            - { label: 'Eventi passati', path: '/eventi-passati' }
+            - { label: 'Eventi futuri', path: '/eventi-futuri' }
+            - { label: 'Obiettivi', path: '/obiettivi-filosofia' }
+            - { label: 'Statuto', path: '/statuto' }
+            - { label: 'Albo associati', path: '/albo-associati' }
+            - { label: 'Suona con noi', path: '/suona-con-noi' }
+        social_links:
+            email: '%env(MAIL_TO)%'
+            instagram: '%env(SOCIAL_INSTAGRAM)%'
+            telegram: '%env(SOCIAL_TELEGRAM)%'
+
+when@test:
+    twig:
+        strict_variables: true

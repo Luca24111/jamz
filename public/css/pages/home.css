@@ -1,0 +1,17 @@
+.stats-grid {
+    margin-top: -1rem;
+}
+
+.split-layout .coverflow-carousel[data-carousel-id='eventi-passati-home'] .coverflow-badge {
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.feature-card:nth-child(2n) {
+    transform: translateY(1rem);
+}
+
+@media (max-width: 860px) {
+    .feature-card:nth-child(2n) {
+        transform: none;
+    }
+}

@@ -1,0 +1,3 @@
+.pillar-card:nth-child(odd) {
+    border-color: rgba(31, 103, 102, 0.28);
+}

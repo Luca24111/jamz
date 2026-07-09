@@ -1,0 +1,18 @@
+{% set alerts = [] %}
+{% if success_message is defined and success_message %}
+    {% set alerts = alerts|merge([{ type: 'success', message: success_message }]) %}
+{% endif %}
+{% if error_message is defined and error_message %}
+    {% set alerts = alerts|merge([{ type: 'error', message: error_message }]) %}
+{% endif %}
+{% if info_message is defined and info_message %}
+    {% set alerts = alerts|merge([{ type: 'info', message: info_message }]) %}
+{% endif %}
+
+{% if alerts is not empty %}
+    <div class="shell flash-stack" aria-live="polite">
+        {% for alert in alerts %}
+            <div class="flash flash-{{ alert.type }}">{{ alert.message }}</div>
+        {% endfor %}
+    </div>
+{% endif %}

@@ -1,0 +1,21 @@
+<article class="event-card">
+    <a class="event-card-link" href="{{ path('app_events_show', { id: event.id }) }}" aria-label="Apri dettaglio evento {{ event.title }}">
+        <img src="{{ asset(event.coverImage) }}" alt="Copertina evento {{ event.title }}" class="event-cover">
+        <div class="event-body">
+            <div class="event-meta">
+                <span>{{ event.formattedDate }}</span>
+                <span>{{ event.location }}</span>
+            </div>
+            <h3>{{ event.title }}</h3>
+            <p>{{ event.description }}</p>
+
+            {% if event.images is not empty %}
+                <div class="event-gallery">
+                    {% for image in event.images %}
+                        <img src="{{ asset(image.url) }}" alt="{{ image.altText }}">
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </a>
+</article>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760">
+  <rect width="1200" height="760" fill="#111316"/>
+  <rect x="76" y="84" width="1048" height="592" rx="42" fill="#f4efe7"/>
+  <circle cx="222" cy="230" r="110" fill="#e15a2d"/>
+  <text x="344" y="256" fill="#111316" font-size="110" font-family="Space Grotesk, Arial, sans-serif">URBAN</text>
+  <text x="344" y="356" fill="#111316" font-size="110" font-family="Space Grotesk, Arial, sans-serif">NIGHT</text>
+  <text x="344" y="456" fill="#111316" font-size="110" font-family="Space Grotesk, Arial, sans-serif">SESSION</text>
+</svg>

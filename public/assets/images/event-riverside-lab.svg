@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760">
+  <rect width="1200" height="760" fill="#194543"/>
+  <path d="M0 546c230-58 366-58 542 0s348 58 658-18v232H0z" fill="#f4efe7"/>
+  <text x="90" y="180" fill="#f4efe7" font-size="72" font-family="IBM Plex Sans, Arial, sans-serif">RIVERSIDE</text>
+  <text x="90" y="310" fill="#f4efe7" font-size="130" font-family="Space Grotesk, Arial, sans-serif">LISTENING</text>
+  <text x="92" y="432" fill="#f4efe7" font-size="130" font-family="Space Grotesk, Arial, sans-serif">LAB</text>
+</svg>

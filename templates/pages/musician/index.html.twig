@@ -1,0 +1,60 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block content %}
+    {% include 'components/page-hero.html.twig' with {
+        hero: {
+            eyebrow: 'Open call',
+            title: 'Suona con noi',
+            intro: 'Invia la tua proposta artistica. I dati vengono validati lato server, salvati su MySQL e notificati all’associazione.'
+        }
+    } %}
+
+    <section class="shell form-shell section-spacing">
+        <form class="application-form" method="post" action="/suona-con-noi" novalidate>
+            <div class="form-grid">
+                <label>
+                    <span>Nome</span>
+                    <input type="text" name="nome" value="{{ old.nome|default('') }}" required minlength="2">
+                    {% if errors.nome is defined %}<small class="field-error">{{ errors.nome }}</small>{% endif %}
+                </label>
+                <label>
+                    <span>Cognome</span>
+                    <input type="text" name="cognome" value="{{ old.cognome|default('') }}" required minlength="2">
+                    {% if errors.cognome is defined %}<small class="field-error">{{ errors.cognome }}</small>{% endif %}
+                </label>
+                <label>
+                    <span>Email</span>
+                    <input type="email" name="email" value="{{ old.email|default('') }}" required>
+                    {% if errors.email is defined %}<small class="field-error">{{ errors.email }}</small>{% endif %}
+                </label>
+                <label>
+                    <span>Telefono</span>
+                    <input type="text" name="telefono" value="{{ old.telefono|default('') }}" required>
+                    {% if errors.telefono is defined %}<small class="field-error">{{ errors.telefono }}</small>{% endif %}
+                </label>
+                <label>
+                    <span>Genere musicale</span>
+                    <input type="text" name="genere_musicale" value="{{ old.genere_musicale|default('') }}" required minlength="3">
+                    {% if errors.genere_musicale is defined %}<small class="field-error">{{ errors.genere_musicale }}</small>{% endif %}
+                </label>
+                <label>
+                    <span>Disponibilità</span>
+                    <input type="text" name="disponibilita" value="{{ old.disponibilita|default('') }}" placeholder="Weekend, tour, showcase...">
+                </label>
+                <label class="field-full">
+                    <span>Link a materiale audio/video</span>
+                    <input type="url" name="link_materiale" value="{{ old.link_materiale|default('') }}" placeholder="https://...">
+                    {% if errors.link_materiale is defined %}<small class="field-error">{{ errors.link_materiale }}</small>{% endif %}
+                </label>
+                <label class="field-full">
+                    <span>Descrizione del progetto</span>
+                    <textarea name="descrizione_progetto" rows="8" minlength="40" required data-character-count>{{ old.descrizione_progetto|default('') }}</textarea>
+                    <small class="field-hint">Racconta formazione, set, necessità tecniche e contesto artistico.</small>
+                    <small class="field-counter" data-character-output></small>
+                    {% if errors.descrizione_progetto is defined %}<small class="field-error">{{ errors.descrizione_progetto }}</small>{% endif %}
+                </label>
+            </div>
+            <button class="button button-primary" type="submit">Invia candidatura</button>
+        </form>
+    </section>
+{% endblock %}

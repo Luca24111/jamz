@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520">
+  <rect width="800" height="520" fill="#133433"/>
+  <rect x="52" y="58" width="300" height="110" rx="24" fill="#f4efe7"/>
+  <rect x="332" y="212" width="390" height="250" rx="32" fill="#e15a2d"/>
+  <text x="82" y="126" fill="#161616" font-size="44" font-family="Space Grotesk, Arial, sans-serif">PRODUZIONE</text>
+  <text x="70" y="388" fill="#f4efe7" font-size="62" font-family="Space Grotesk, Arial, sans-serif">GIULIO</text>
+  <text x="70" y="446" fill="#f4efe7" font-size="62" font-family="Space Grotesk, Arial, sans-serif">BERTI</text>
+</svg>

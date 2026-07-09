@@ -1,0 +1,34 @@
+{% set current_path = app.request ? app.request.pathInfo : '/' %}
+<nav class="nav shell" aria-label="Navigazione principale">
+    <a class="brand" href="/">
+        <span class="brand-mark">J</span>
+        <span class="brand-text">Jamz</span>
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Apri il menu principale">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span class="sr-only">Apri o chiudi il menu</span>
+    </button>
+
+    <div class="nav-backdrop" data-nav-close></div>
+
+    <div class="nav-menu" id="nav-menu" aria-hidden="true">
+        <div class="nav-menu-head">
+            <span class="nav-menu-title">Menu</span>
+            <button class="nav-close" type="button" data-nav-close aria-label="Chiudi il menu">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% for item in navigation %}
+            <a
+                href="{{ item.path }}"
+                class="nav-link{% if current_path == item.path %} is-active{% endif %}"
+                {% if current_path == item.path %}aria-current="page"{% endif %}
+            >
+                {{ item.label }}
+            </a>
+        {% endfor %}
+    </div>
+</nav>

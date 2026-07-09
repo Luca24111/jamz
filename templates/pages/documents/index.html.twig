@@ -1,0 +1,29 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block content %}
+    {% include 'components/page-hero.html.twig' with {
+        hero: {
+            eyebrow: 'Documenti ufficiali',
+            title: 'Statuto e atto costitutivo disponibili online.',
+            intro: 'I documenti vengono letti dal database e puntano ad asset PDF versionati nella cartella pubblica.'
+        }
+    } %}
+
+    <section class="shell documents-grid section-spacing">
+        {% for document in documents %}
+            {% include 'components/document-card.html.twig' with { document: document } %}
+        {% else %}
+            <p class="empty-state">Nessun documento disponibile.</p>
+        {% endfor %}
+    </section>
+
+    {% if documents is not empty %}
+        <section class="shell section-spacing">
+            <div class="section-heading">
+                <p class="eyebrow">Anteprima inline</p>
+                <h2>{{ documents[0].title }}</h2>
+            </div>
+            <iframe class="document-frame" src="{{ asset(documents[0].path) }}" title="Anteprima documento {{ documents[0].title }}"></iframe>
+        </section>
+    {% endif %}
+{% endblock %}

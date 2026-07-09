@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# Gli asset reali vengono serviti direttamente dal web server.
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Tutto il resto viene gestito dal front controller.
+RewriteRule ^ index.php [QSA,L]

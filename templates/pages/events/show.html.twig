@@ -1,0 +1,78 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block content %}
+    {% include 'components/page-hero.html.twig' with {
+        hero: {
+            eyebrow: event.isPast ? 'Report evento' : 'Scheda evento',
+            title: event.title,
+            intro: event.description,
+            secondary_cta: event.isPast ? { label: 'Torna agli eventi passati', path: '/eventi-passati' } : { label: 'Torna agli eventi futuri', path: '/eventi-futuri' }
+        }
+    } %}
+
+    <section class="shell event-detail-grid section-spacing">
+        <article class="event-detail-main">
+            <img src="{{ asset(event.coverImage) }}" alt="Copertina evento {{ event.title }}" class="event-detail-cover">
+
+            <div class="event-detail-meta">
+                <span>{{ event.formattedDate }}</span>
+                <span>{{ event.location }}</span>
+                <span>{% if event.isPast %}Evento concluso{% else %}In programma{% endif %}</span>
+            </div>
+
+            <div class="event-report">
+                <h2>{% if event.isPast %}Report della serata{% else %}Descrizione estesa{% endif %}</h2>
+
+                {% if event.reportParagraphs is not empty %}
+                    {% for paragraph in event.reportParagraphs %}
+                        <p>{{ paragraph }}</p>
+                    {% endfor %}
+                {% else %}
+                    <p>{{ event.description }}</p>
+                {% endif %}
+            </div>
+
+            {% if event.images is not empty %}
+                <div class="event-detail-gallery">
+                    {% for image in event.images %}
+                        <figure class="event-detail-figure">
+                            <img src="{{ asset(image.url) }}" alt="{{ image.altText }}">
+                            <figcaption>{{ image.altText }}</figcaption>
+                        </figure>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </article>
+
+        <aside class="event-detail-side">
+            <div class="event-side-card">
+                <p class="eyebrow">Dettagli rapidi</p>
+                <ul class="event-side-list">
+                    <li><strong>Data</strong> {{ event.formattedDate }}</li>
+                    <li><strong>Luogo</strong> {{ event.location }}</li>
+                    <li><strong>Stato</strong> {% if event.isPast %}Passato{% else %}Futuro{% endif %}</li>
+                </ul>
+            </div>
+
+            <div class="event-side-card">
+                <p class="eyebrow">Altri eventi</p>
+                <div class="event-side-links">
+                    {% set hasRelatedEvents = false %}
+                    {% for relatedEvent in related_events %}
+                        {% if relatedEvent.id != event.id %}
+                            {% set hasRelatedEvents = true %}
+                            <a href="{{ path('app_events_show', { id: relatedEvent.id }) }}" class="event-side-link">
+                                <strong>{{ relatedEvent.title }}</strong>
+                                <span>{{ relatedEvent.formattedDate }}</span>
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if not hasRelatedEvents %}
+                        <p class="empty-state">Nessun altro evento disponibile.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </aside>
+    </section>
+{% endblock %}

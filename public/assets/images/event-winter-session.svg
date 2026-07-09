@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760">
+  <rect width="1200" height="760" fill="#e9f0f2"/>
+  <rect x="74" y="72" width="1054" height="616" rx="40" fill="#133433"/>
+  <circle cx="224" cy="236" r="126" fill="#f4efe7"/>
+  <text x="406" y="250" fill="#f4efe7" font-size="110" font-family="Space Grotesk, Arial, sans-serif">WINTER</text>
+  <text x="406" y="372" fill="#f4efe7" font-size="110" font-family="Space Grotesk, Arial, sans-serif">SESSION</text>
+  <text x="406" y="492" fill="#f4efe7" font-size="110" font-family="Space Grotesk, Arial, sans-serif">MARKET</text>
+</svg>

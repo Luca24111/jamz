@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760">
+  <rect width="1200" height="760" fill="#1a1714"/>
+  <rect x="84" y="94" width="1032" height="572" rx="28" fill="#f4efe7"/>
+  <text x="130" y="266" fill="#1a1714" font-size="72" font-family="IBM Plex Sans, Arial, sans-serif">ATELIER RESIDENCY</text>
+  <text x="122" y="410" fill="#1a1714" font-size="150" font-family="Space Grotesk, Arial, sans-serif">SHOWCASE</text>
+  <circle cx="936" cy="212" r="92" fill="#e15a2d"/>
+</svg>

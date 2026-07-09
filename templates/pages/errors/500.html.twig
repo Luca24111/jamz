@@ -1,0 +1,10 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block content %}
+    <section class="shell error-state section-spacing">
+        <p class="eyebrow">500</p>
+        <h1>Si è verificato un errore applicativo.</h1>
+        <p>Controlla configurazione ambiente, database e dipendenze Composer prima di riprovare.</p>
+        <a class="button button-primary" href="/">Ricarica la home</a>
+    </section>
+{% endblock %}

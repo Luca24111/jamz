@@ -1,0 +1,62 @@
+{% if items is not empty %}
+    <section
+        class="coverflow-carousel"
+        data-carousel-id="{{ carousel_id }}"
+        data-carousel-transition="480"
+        tabindex="0"
+        aria-label="Carosello {{ carousel_id }}"
+    >
+        <button class="coverflow-nav coverflow-nav-prev" type="button" data-carousel-prev aria-label="Elemento precedente">
+            <span aria-hidden="true">‹</span>
+        </button>
+
+        <div class="coverflow-viewport">
+            <div class="coverflow-track" data-carousel-track>
+                {% for item in items %}
+                    <article
+                        class="coverflow-slide"
+                        data-carousel-slide
+                        data-slide-index="{{ loop.index0 }}"
+                        aria-roledescription="slide"
+                        aria-label="Elemento {{ loop.index }} di {{ items|length }}"
+                    >
+                        <a class="coverflow-card" href="{{ item.url }}">
+                            <div class="coverflow-media">
+                                <img src="{{ asset(item.image) }}" alt="{{ item.title }}">
+                                {% if item.badge %}
+                                    <span class="coverflow-badge">{{ item.badge }}</span>
+                                {% endif %}
+                            </div>
+
+                            <div class="coverflow-content">
+                                <p class="coverflow-subtitle">{{ item.subtitle }}</p>
+                                <h3>{{ item.title }}</h3>
+                                <p class="coverflow-excerpt">{{ item.excerpt }}</p>
+                                <span class="coverflow-pill">{{ item.cta }}</span>
+                            </div>
+                        </a>
+                    </article>
+                {% endfor %}
+            </div>
+        </div>
+
+        <button class="coverflow-nav coverflow-nav-next" type="button" data-carousel-next aria-label="Elemento successivo">
+            <span aria-hidden="true">›</span>
+        </button>
+
+        <div class="coverflow-dots" data-carousel-dots aria-label="Navigazione carosello">
+            {% for item in items %}
+                <button
+                    class="coverflow-dot{% if loop.first %} is-active{% endif %}"
+                    type="button"
+                    data-carousel-dot
+                    data-slide-target="{{ loop.index0 }}"
+                    aria-label="Vai all'elemento {{ loop.index }}"
+                    {% if loop.first %}aria-current="true"{% endif %}
+                ></button>
+            {% endfor %}
+        </div>
+    </section>
+{% else %}
+    <p class="empty-state">{{ empty_message|default('Nessun contenuto disponibile.') }}</p>
+{% endif %}

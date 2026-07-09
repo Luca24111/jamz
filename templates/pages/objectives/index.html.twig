@@ -1,0 +1,14 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block content %}
+    {% include 'components/page-hero.html.twig' with { hero: hero } %}
+
+    <section class="shell pillar-grid section-spacing">
+        {% for pillar in pillars %}
+            <article class="pillar-card">
+                <h2>{{ pillar.title }}</h2>
+                <p>{{ pillar.body }}</p>
+            </article>
+        {% endfor %}
+    </section>
+{% endblock %}

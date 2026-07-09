@@ -1,0 +1,55 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block content %}
+    {% include 'components/page-hero.html.twig' with { hero: hero } %}
+
+    <section class="shell stats-grid section-spacing">
+        {% for stat in stats %}
+            <article class="stat-card">
+                <strong>{{ stat.value }}</strong>
+                <span>{{ stat.label }}</span>
+            </article>
+        {% endfor %}
+    </section>
+
+    <section class="shell section-spacing">
+        <div class="section-heading">
+            <p class="eyebrow">Navigazione rapida</p>
+            <h2>Le aree chiave del progetto</h2>
+        </div>
+        <div class="feature-grid">
+            {% for card in cards %}
+                <a class="feature-card" href="{{ card.path }}">
+                    <h3>{{ card.title }}</h3>
+                    <p>{{ card.body }}</p>
+                </a>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="shell section-spacing split-layout">
+        <div class="section-heading">
+            <p class="eyebrow">Prossimi appuntamenti</p>
+            <h2>Programmazione futura</h2>
+            <a class="text-link" href="/eventi-futuri">Vedi tutta la programmazione</a>
+        </div>
+        {% include 'components/coverflow-carousel.html.twig' with {
+            carousel_id: 'eventi-futuri-home',
+            items: future_event_carousel_items,
+            empty_message: 'Nessun evento futuro inserito al momento.'
+        } %}
+    </section>
+
+    <section class="shell section-spacing split-layout">
+        <div class="section-heading">
+            <p class="eyebrow">Memoria attiva</p>
+            <h2>Eventi passati</h2>
+            <a class="text-link" href="/eventi-passati">Apri l'archivio completo</a>
+        </div>
+        {% include 'components/coverflow-carousel.html.twig' with {
+            carousel_id: 'eventi-passati-home',
+            items: past_event_carousel_items,
+            empty_message: 'Archivio non ancora popolato.'
+        } %}
+    </section>
+{% endblock %}
