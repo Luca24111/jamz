@@ -1,0 +1,99 @@
+{% if events is not empty %}
+    <section class="shell event-explorer section-spacing" data-event-explorer>
+        <aside class="event-explorer-nav" aria-label="{{ nav_label|default('Elenco eventi') }}">
+            <div class="event-explorer-nav-inner">
+                {% if nav_eyebrow is defined and nav_eyebrow %}
+                    <p class="eyebrow">{{ nav_eyebrow }}</p>
+                {% endif %}
+
+                <div class="event-explorer-links">
+                    {% for event in events %}
+                        <a
+                            href="#event-{{ event.id }}"
+                            class="event-explorer-link{% if loop.first %} is-active{% endif %}"
+                            data-event-nav-link
+                            data-target="event-{{ event.id }}"
+                            {% if loop.first %}aria-current="true"{% endif %}
+                        >
+                            <span class="event-explorer-link-title">{{ event.title }}</span>
+                            <span class="event-explorer-link-meta">{{ event.formattedDate }} · {{ event.location }}</span>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </aside>
+
+        <div class="event-explorer-panels">
+            {% for event in events %}
+                {% set detail_path = path('app_events_show', { id: event.id }) %}
+                {% set preview_images = event.images|slice(0, 4) %}
+
+                <article id="event-{{ event.id }}" class="event-showcase" data-event-section>
+                    <h2 class="event-showcase-mobile-title">{{ event.title }}</h2>
+
+                    <div class="event-showcase-media{% if preview_images is empty %} has-no-previews{% endif %}">
+                        <a class="event-showcase-main" href="{{ detail_path }}">
+                            <img src="{{ asset(event.coverImage) }}" alt="Copertina evento {{ event.title }}">
+                            <div class="event-showcase-overlay">
+                                <span class="event-showcase-state" data-state="{% if event.isPast %}past{% else %}future{% endif %}">
+                                    {% if event.isPast %}Archivio{% else %}Live{% endif %}
+                                </span>
+                                <span class="event-showcase-open">Apri dettaglio</span>
+                            </div>
+                        </a>
+
+                        {% if preview_images is not empty %}
+                            <div class="event-showcase-preview-grid">
+                                {% for image in preview_images %}
+                                    <a class="event-showcase-preview" href="{{ detail_path }}">
+                                        <img src="{{ asset(image.url) }}" alt="{{ image.altText }}">
+                                        <span class="event-showcase-preview-caption">
+                                            {{ image.altText }}
+                                        </span>
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="event-showcase-mobile-carousel" aria-label="Anteprime evento {{ event.title }}">
+                        <a class="event-showcase-mobile-slide is-cover" href="{{ detail_path }}">
+                            <img src="{{ asset(event.coverImage) }}" alt="Copertina evento {{ event.title }}">
+                            <span class="event-showcase-mobile-slide-meta">
+                                <span class="event-showcase-state" data-state="{% if event.isPast %}past{% else %}future{% endif %}">
+                                    {% if event.isPast %}Archivio{% else %}Live{% endif %}
+                                </span>
+                                <span class="event-showcase-open">Apri dettaglio</span>
+                            </span>
+                        </a>
+
+                        {% for image in preview_images %}
+                            <a class="event-showcase-mobile-slide" href="{{ detail_path }}">
+                                <img src="{{ asset(image.url) }}" alt="{{ image.altText }}">
+                                <span class="event-showcase-mobile-caption">{{ image.altText }}</span>
+                            </a>
+                        {% endfor %}
+                    </div>
+
+                    <div class="event-showcase-copy">
+                        <p class="eyebrow">{{ event.isPast ? 'Evento concluso' : 'In programma' }}</p>
+                        <h2>{{ event.title }}</h2>
+                        <p class="event-showcase-description">{{ event.description }}</p>
+
+                        <div class="event-meta">
+                            <span>{{ event.formattedDate }}</span>
+                            <span>{{ event.location }}</span>
+                            <span>{% if event.isPast %}Report disponibile{% else %}Scheda evento{% endif %}</span>
+                        </div>
+
+                        <a class="button button-secondary" href="{{ detail_path }}">Apri pagina evento</a>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
+{% else %}
+    <section class="shell section-spacing">
+        <p class="empty-state">{{ empty_message|default('Nessun evento disponibile.') }}</p>
+    </section>
+{% endif %}

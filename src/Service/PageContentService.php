@@ -14,7 +14,7 @@ final class PageContentService
         return [
             'hero' => [
                 'eyebrow' => 'Associazione culturale e musicale',
-                'title' => 'Uno spazio per progettare musica, comunità e occasioni di incontro.',
+                'title' => 'Uno [[spazio]] per progettare [[musica]], comunità e [[occasioni]] di incontro.',
                 'intro' => 'Jamz nasce per tenere insieme produzione artistica, cura del territorio e occasioni di crescita condivisa per musicisti, pubblico e realtà culturali locali.',
             ],
             'sections' => [
@@ -42,7 +42,7 @@ final class PageContentService
         return [
             'hero' => [
                 'eyebrow' => 'Missione e visione',
-                'title' => 'Una programmazione culturale che mette al centro persone, processi e qualità artistica.',
+                'title' => 'Una programmazione [[culturale]] che mette al centro [[persone]], processi e qualità [[artistica]].',
                 'intro' => 'La filosofia dell’associazione integra inclusione, sperimentazione e radicamento territoriale.',
             ],
             'pillars' => [

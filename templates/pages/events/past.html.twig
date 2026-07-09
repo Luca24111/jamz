@@ -4,38 +4,15 @@
     {% include 'components/page-hero.html.twig' with {
         hero: {
             eyebrow: 'Archivio',
-            title: 'Eventi passati',
+            title: 'Eventi [[passati]]',
             intro: 'Un archivio ordinabile e filtrabile che conserva programma, descrizione e galleria immagini delle attività già svolte.'
         }
     } %}
 
-    <section class="shell section-spacing">
-        <form class="filter-bar" method="get" action="/eventi-passati">
-            <label>
-                <span>Anno</span>
-                <select name="year">
-                    <option value="">Tutti</option>
-                    {% for year in available_years %}
-                        <option value="{{ year }}" {% if selected_year == year %}selected{% endif %}>{{ year }}</option>
-                    {% endfor %}
-                </select>
-            </label>
-            <label>
-                <span>Ordine</span>
-                <select name="order">
-                    <option value="desc" {% if selected_order == 'desc' %}selected{% endif %}>Più recenti</option>
-                    <option value="asc" {% if selected_order == 'asc' %}selected{% endif %}>Più lontani</option>
-                </select>
-            </label>
-            <button class="button button-primary" type="submit">Applica filtri</button>
-        </form>
-    </section>
-
-    <section class="shell stack-list section-spacing">
-        {% for event in events %}
-            {% include 'components/event-card.html.twig' with { event: event } %}
-        {% else %}
-            <p class="empty-state">Nessun evento corrisponde ai filtri selezionati.</p>
-        {% endfor %}
-    </section>
+    {% include 'components/event-explorer.html.twig' with {
+        events: events,
+        nav_eyebrow: 'Seleziona un evento',
+        nav_label: 'Archivio eventi passati',
+        empty_message: 'Nessun evento corrisponde ai filtri selezionati.'
+    } %}
 {% endblock %}

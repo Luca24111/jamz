@@ -199,4 +199,9 @@ class Event
 
         return $this;
     }
+
+    public function __toString(): string
+    {
+        return $this->title ?? sprintf('Evento #%d', $this->id ?? 0);
+    }
 }

@@ -1,3 +1,53 @@
-.board-card:nth-child(3n + 2) {
+.board-coverflow-carousel {
+    --coverflow-card-width: min(28rem, 72vw);
+}
+
+.board-coverflow-carousel .coverflow-track {
+    min-height: 38rem;
+}
+
+.board-coverflow-card {
+    min-height: 34rem;
+    background: rgba(255, 250, 244, 0.96);
+}
+
+.board-coverflow-card .board-photo {
+    aspect-ratio: 4 / 3;
+}
+
+.board-coverflow-card .board-body {
+    align-content: start;
+}
+
+.board-coverflow-card .text-link {
+    width: fit-content;
+}
+
+.board-coverflow-carousel .coverflow-slide.is-prev .board-coverflow-card,
+.board-coverflow-carousel .coverflow-slide.is-next .board-coverflow-card {
     background: linear-gradient(180deg, rgba(225, 90, 45, 0.08), rgba(255, 250, 244, 0.96));
+}
+
+@media (max-width: 980px) {
+    .board-coverflow-carousel {
+        --coverflow-card-width: min(24rem, 78vw);
+    }
+
+    .board-coverflow-carousel .coverflow-track {
+        min-height: 35rem;
+    }
+}
+
+@media (max-width: 700px) {
+    .board-coverflow-carousel {
+        --coverflow-card-width: min(19rem, 78vw);
+    }
+
+    .board-coverflow-carousel .coverflow-track {
+        min-height: 31rem;
+    }
+
+    .board-coverflow-card {
+        min-height: 29rem;
+    }
 }

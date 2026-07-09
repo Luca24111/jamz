@@ -4,16 +4,20 @@
     {% include 'components/page-hero.html.twig' with {
         hero: {
             eyebrow: 'Consiglio direttivo',
-            title: 'Le persone che coordinano visione, produzione e relazioni dell’associazione.',
+            title: 'Le [[persone]] che coordinano [[visione]], produzione e [[relazioni]] dell’associazione.',
             intro: 'Ogni ruolo unisce competenze organizzative e prossimità con la scena musicale locale.'
         }
     } %}
 
-    <section class="shell board-grid section-spacing">
-        {% for member in members %}
-            {% include 'components/board-card.html.twig' with { member: member } %}
-        {% else %}
-            <p class="empty-state">Nessun membro presente nel database.</p>
-        {% endfor %}
+    <section class="shell section-spacing split-layout">
+        <div class="section-heading">
+            <p class="eyebrow">Persone e ruoli</p>
+            <h2>Il gruppo che guida Jamz</h2>
+        </div>
+        {% include 'components/board-coverflow-carousel.html.twig' with {
+            carousel_id: 'consiglio-direttivo',
+            members: members,
+            empty_message: 'Nessun membro presente nel database.'
+        } %}
     </section>
 {% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block content %}
+    <section class="shell section-spacing admin-login-shell">
+        <div class="admin-login-card">
+            <p class="eyebrow">Area amministrazione</p>
+            <h1>Accedi a Jamz Admin</h1>
+
+            {% if error %}
+                <div class="flash flash-error">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+
+            <form method="post" class="application-form admin-login-form">
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                <label>
+                    <span>Email</span>
+                    <input type="email" name="_username" value="{{ last_username }}" autocomplete="username" required>
+                </label>
+
+                <label>
+                    <span>Password</span>
+                    <input type="password" name="_password" autocomplete="current-password" required>
+                </label>
+
+                <button class="button button-primary" type="submit">Accedi</button>
+            </form>
+        </div>
+    </section>
+{% endblock %}

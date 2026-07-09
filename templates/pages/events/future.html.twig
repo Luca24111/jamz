@@ -4,29 +4,15 @@
     {% include 'components/page-hero.html.twig' with {
         hero: {
             eyebrow: 'Programmazione',
-            title: 'Eventi futuri',
+            title: 'Eventi [[futuri]]',
             intro: 'La programmazione futura arriva dal database e può essere aggiornata senza toccare i template.'
         }
     } %}
 
-    <section class="shell section-spacing">
-        <form class="filter-bar" method="get" action="/eventi-futuri">
-            <label>
-                <span>Ordine</span>
-                <select name="order">
-                    <option value="asc" {% if selected_order == 'asc' %}selected{% endif %}>Più vicini</option>
-                    <option value="desc" {% if selected_order == 'desc' %}selected{% endif %}>Più lontani</option>
-                </select>
-            </label>
-            <button class="button button-primary" type="submit">Aggiorna lista</button>
-        </form>
-    </section>
-
-    <section class="shell stack-list section-spacing">
-        {% for event in events %}
-            {% include 'components/event-card.html.twig' with { event: event } %}
-        {% else %}
-            <p class="empty-state">Non ci sono eventi futuri programmati.</p>
-        {% endfor %}
-    </section>
+    {% include 'components/event-explorer.html.twig' with {
+        events: events,
+        nav_eyebrow: 'Seleziona un evento',
+        nav_label: 'Programmazione eventi futuri',
+        empty_message: 'Non ci sono eventi futuri programmati.'
+    } %}
 {% endblock %}

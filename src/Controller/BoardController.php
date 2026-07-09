@@ -22,7 +22,11 @@ final class BoardController extends BaseController
     public function index(): Response
     {
         return $this->render('pages/board/index.html.twig', $this->page(
-            ['members' => $this->boardService->getBoardMembers()],
+            [
+                'members' => $this->boardService->getBoardMembers(),
+                'base_css_files' => ['css/base/coverflow-carousel.css'],
+                'base_js_files' => ['js/base/coverflow-carousel.js'],
+            ],
             'Consiglio direttivo',
             'consiglio-direttivo.css',
             'consiglio-direttivo.js'

@@ -13,14 +13,14 @@ final class EventService
     {
     }
 
-    public function getPastEvents(?int $year = null, string $order = 'desc'): array
+    public function getPastEvents(?int $year = null, ?int $month = null, string $order = 'desc'): array
     {
-        return $this->repository->findPast($year, $order);
+        return $this->repository->findPast($year, $month, $order);
     }
 
-    public function getFutureEvents(string $order = 'asc'): array
+    public function getFutureEvents(?int $year = null, ?int $month = null, string $order = 'asc'): array
     {
-        return $this->repository->findFuture($order);
+        return $this->repository->findFuture($year, $month, $order);
     }
 
     public function getPastYears(): array
@@ -28,14 +28,50 @@ final class EventService
         return $this->repository->findPastYears();
     }
 
+    public function getFutureYears(): array
+    {
+        return $this->repository->findFutureYears();
+    }
+
+    public function getPastMonths(?int $year = null): array
+    {
+        return $this->repository->findPastMonths($year);
+    }
+
+    public function getFutureMonths(?int $year = null): array
+    {
+        return $this->repository->findFutureMonths($year);
+    }
+
+    /**
+     * @return array<int, string>
+     */
+    public function getMonthLabels(): array
+    {
+        return [
+            1 => 'Gennaio',
+            2 => 'Febbraio',
+            3 => 'Marzo',
+            4 => 'Aprile',
+            5 => 'Maggio',
+            6 => 'Giugno',
+            7 => 'Luglio',
+            8 => 'Agosto',
+            9 => 'Settembre',
+            10 => 'Ottobre',
+            11 => 'Novembre',
+            12 => 'Dicembre',
+        ];
+    }
+
     public function getFeaturedFutureEvents(int $limit = 3): array
     {
-        return array_slice($this->repository->findFuture('asc'), 0, $limit);
+        return array_slice($this->repository->findFuture(null, null, 'asc'), 0, $limit);
     }
 
     public function getRecentPastEvents(int $limit = 2): array
     {
-        return array_slice($this->repository->findPast(null, 'desc'), 0, $limit);
+        return array_slice($this->repository->findPast(null, null, 'desc'), 0, $limit);
     }
 
     public function getUltimiEventiFuturiPerHome(int $limit = 5): array

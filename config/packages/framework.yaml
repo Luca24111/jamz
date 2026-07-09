@@ -2,9 +2,10 @@ framework:
     secret: '%env(APP_SECRET)%'
     http_method_override: false
     handle_all_throwables: true
+    csrf_protection: true
     session:
         enabled: true
         storage_factory_id: session.storage.factory.native
-        save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
+        save_path: '/var/lib/jamz-sessions/%kernel.environment%'
     php_errors:
         log: true

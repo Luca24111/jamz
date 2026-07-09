@@ -2,6 +2,7 @@
 -- Pulisce le tabelle e inserisce almeno 5 record per ogni entità persistita.
 
 SET FOREIGN_KEY_CHECKS = 0;
+TRUNCATE TABLE admin_users;
 TRUNCATE TABLE evento_immagini;
 TRUNCATE TABLE richieste_musicisti;
 TRUNCATE TABLE documenti;
@@ -9,6 +10,9 @@ TRUNCATE TABLE associati;
 TRUNCATE TABLE eventi;
 TRUNCATE TABLE membri_consiglio;
 SET FOREIGN_KEY_CHECKS = 1;
+
+INSERT INTO admin_users (email, roles, password) VALUES
+('admin@jamz.com', '["ROLE_ADMIN"]', '$2y$10$nQR3nCD17mpB/ESOsHytluYOQQX9F0MtuvI.wkHel1Y0H2mymu9dW');
 
 INSERT INTO membri_consiglio (nome, cognome, ruolo, bio, email, foto, ordine_visualizzazione) VALUES
 ('Alba', 'Rossi', 'Presidente', 'Coordina visione artistica, partnership e relazioni con il territorio. Segue i format speciali e la direzione culturale.', 'alba.rossi@jamz.local', 'assets/images/board-alba.svg', 1),

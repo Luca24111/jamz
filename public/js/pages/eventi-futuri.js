@@ -1,5 +1,1 @@
-document.querySelectorAll('.filter-bar select').forEach((select) => {
-    select.addEventListener('change', () => {
-        select.form?.requestSubmit();
-    });
-});
+document.body.classList.add('page-events-future');

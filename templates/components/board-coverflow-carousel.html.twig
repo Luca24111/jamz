@@ -1,0 +1,56 @@
+{% if members is not empty %}
+    <section
+        class="coverflow-carousel board-coverflow-carousel"
+        data-carousel-id="{{ carousel_id }}"
+        data-carousel-transition="480"
+        tabindex="0"
+        aria-label="Carosello {{ carousel_id }}"
+    >
+        <button class="coverflow-nav coverflow-nav-prev" type="button" data-carousel-prev aria-label="Persona precedente">
+            <span aria-hidden="true">‹</span>
+        </button>
+
+        <div class="coverflow-viewport">
+            <div class="coverflow-track" data-carousel-track>
+                {% for member in members %}
+                    <article
+                        class="coverflow-slide"
+                        data-carousel-slide
+                        data-slide-index="{{ loop.index0 }}"
+                        aria-roledescription="slide"
+                        aria-label="Persona {{ loop.index }} di {{ members|length }}"
+                    >
+                        <div class="coverflow-card board-card board-coverflow-card">
+                            <img src="{{ asset(member.photo) }}" alt="Ritratto di {{ member.fullName }}" class="board-photo">
+                            <div class="board-body">
+                                <p class="eyebrow">{{ member.role }}</p>
+                                <h3>{{ member.fullName }}</h3>
+                                <p>{{ member.bio }}</p>
+                                <a class="text-link" href="mailto:{{ member.email }}">{{ member.email }}</a>
+                            </div>
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+        </div>
+
+        <button class="coverflow-nav coverflow-nav-next" type="button" data-carousel-next aria-label="Persona successiva">
+            <span aria-hidden="true">›</span>
+        </button>
+
+        <div class="coverflow-dots" data-carousel-dots aria-label="Navigazione carosello">
+            {% for member in members %}
+                <button
+                    class="coverflow-dot{% if loop.first %} is-active{% endif %}"
+                    type="button"
+                    data-carousel-dot
+                    data-slide-target="{{ loop.index0 }}"
+                    aria-label="Vai alla persona {{ loop.index }}"
+                    {% if loop.first %}aria-current="true"{% endif %}
+                ></button>
+            {% endfor %}
+        </div>
+    </section>
+{% else %}
+    <p class="empty-state">{{ empty_message|default('Nessun contenuto disponibile.') }}</p>
+{% endif %}
