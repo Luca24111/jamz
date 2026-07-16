@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Entity\Concerns\ResolvesPublicAssetPath;
 use App\Repository\EventImageRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -11,6 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Table(name: 'evento_immagini')]
 class EventImage
 {
+    use ResolvesPublicAssetPath;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -51,6 +54,11 @@ class EventImage
         return $this->url;
     }
 
+    public function getPublicPath(): string
+    {
+        return $this->resolvePublicAssetPath($this->url, 'assets/images/events/gallery');
+    }
+
     public function setUrl(string $url): self
     {
         $this->url = $url;
@@ -80,5 +88,13 @@ class EventImage
         $this->displayOrder = $displayOrder;
 
         return $this;
+    }
+
+    public function isVideo(): bool
+    {
+        $path = parse_url($this->url, \PHP_URL_PATH);
+        $extension = strtolower(pathinfo($path ?? $this->url, \PATHINFO_EXTENSION));
+
+        return in_array($extension, ['mp4', 'webm', 'mov', 'm4v', 'ogg'], true);
     }
 }

@@ -4,7 +4,7 @@
     <p>File: {{ document.fileName }}</p>
     <p>Caricato il {{ document.formattedUploadedAt }}</p>
     <div class="document-actions">
-        <a class="button button-primary" href="{{ asset(document.path) }}" target="_blank" rel="noreferrer">Apri PDF</a>
-        <a class="button button-secondary" href="{{ asset(document.path) }}" download>Scarica</a>
+        <a class="button button-primary" href="{{ asset(document.publicPath) }}" target="_blank" rel="noreferrer">Apri file</a>
+        <a class="button button-secondary" href="{{ asset(document.publicPath) }}" download>Scarica</a>
     </div>
 </article>

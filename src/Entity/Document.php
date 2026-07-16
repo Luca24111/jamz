@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Entity\Concerns\ResolvesPublicAssetPath;
 use App\Repository\DocumentRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -11,6 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Table(name: 'documenti')]
 class Document
 {
+    use ResolvesPublicAssetPath;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -80,6 +83,11 @@ class Document
     public function getPath(): string
     {
         return $this->path;
+    }
+
+    public function getPublicPath(): string
+    {
+        return $this->resolvePublicAssetPath($this->path, 'assets/documents');
     }
 
     public function setPath(string $path): self

@@ -49,7 +49,7 @@ final class HomeService
     {
         return array_map(static function (\App\Entity\Event $event): array {
             return [
-                'image' => $event->getCoverImage(),
+                'image' => $event->getCoverImagePath(),
                 'title' => $event->getTitle(),
                 'subtitle' => $event->getFormattedDate() . ' · ' . $event->getLocation(),
                 'excerpt' => $event->getDescription(),

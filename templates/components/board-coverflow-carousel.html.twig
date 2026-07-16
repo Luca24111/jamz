@@ -21,7 +21,7 @@
                         aria-label="Persona {{ loop.index }} di {{ members|length }}"
                     >
                         <div class="coverflow-card board-card board-coverflow-card">
-                            <img src="{{ asset(member.photo) }}" alt="Ritratto di {{ member.fullName }}" class="board-photo">
+                            <img src="{{ asset(member.photoPath) }}" alt="Ritratto di {{ member.fullName }}" class="board-photo">
                             <div class="board-body">
                                 <p class="eyebrow">{{ member.role }}</p>
                                 <h3>{{ member.fullName }}</h3>

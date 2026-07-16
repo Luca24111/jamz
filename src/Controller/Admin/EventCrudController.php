@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -35,7 +36,12 @@ final class EventCrudController extends BaseCrudController
         yield $this->makeOptional(DateTimeField::new('createdAt', 'Creato il'));
         yield $this->makeOptional(DateTimeField::new('eventDate', 'Data evento'));
         yield $this->makeOptional(TextField::new('location', 'Luogo'));
-        yield $this->makeOptional(TextField::new('coverImage', 'Immagine copertina'));
+        yield $this->makeOptional(
+            ImageField::new('coverImage', 'Immagine copertina')
+                ->setBasePath('assets/images/events/covers')
+                ->setUploadDir('public/assets/images/events/covers')
+                ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]')
+        );
         yield $this->makeOptional(TextField::new('participationLink', 'Link partecipazione'));
         yield CollectionField::new('images', 'Immagini')->hideOnForm();
     }

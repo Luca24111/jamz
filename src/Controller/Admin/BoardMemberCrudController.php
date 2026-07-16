@@ -7,6 +7,7 @@ namespace App\Controller\Admin;
 use App\Entity\BoardMember;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -33,7 +34,12 @@ final class BoardMemberCrudController extends BaseCrudController
         yield $this->makeOptional(TextField::new('role', 'Ruolo'));
         yield $this->makeOptional(TextEditorField::new('bio', 'Bio'));
         yield $this->makeOptional(TextField::new('email', 'Email'));
-        yield $this->makeOptional(TextField::new('photo', 'Foto'));
+        yield $this->makeOptional(
+            ImageField::new('photo', 'Foto')
+                ->setBasePath('assets/images/board-members')
+                ->setUploadDir('public/assets/images/board-members')
+                ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]')
+        );
         yield $this->makeOptional(IntegerField::new('displayOrder', 'Ordine'));
     }
 }

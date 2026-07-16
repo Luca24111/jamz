@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Entity\Concerns\ResolvesPublicAssetPath;
 use App\Repository\EventRepository;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -14,6 +15,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Table(name: 'eventi')]
 class Event
 {
+    use ResolvesPublicAssetPath;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -156,6 +159,11 @@ class Event
     public function getCoverImage(): string
     {
         return $this->coverImage;
+    }
+
+    public function getCoverImagePath(): string
+    {
+        return $this->resolvePublicAssetPath($this->coverImage, 'assets/images/events/covers');
     }
 
     public function setCoverImage(string $coverImage): self

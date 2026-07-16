@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Entity\Concerns\ResolvesPublicAssetPath;
 use App\Repository\BoardMemberRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -11,6 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Table(name: 'membri_consiglio')]
 class BoardMember
 {
+    use ResolvesPublicAssetPath;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -110,6 +113,11 @@ class BoardMember
     public function getPhoto(): string
     {
         return $this->photo;
+    }
+
+    public function getPhotoPath(): string
+    {
+        return $this->resolvePublicAssetPath($this->photo, 'assets/images/board-members');
     }
 
     public function setPhoto(string $photo): self

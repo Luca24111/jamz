@@ -60,11 +60,14 @@
     gap: 0.6rem;
 }
 
-.event-detail-figure img {
+.event-detail-figure img,
+.event-detail-figure video {
     width: 100%;
     aspect-ratio: 1;
+    height: auto;
     object-fit: cover;
     border-radius: 1rem;
+    display: block;
 }
 
 .event-detail-figure figcaption {
