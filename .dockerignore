@@ -1,0 +1,7 @@
+var/cache/*
+var/log/*
+.git
+.env
+.env.dev
+.env.prod
+vendor
