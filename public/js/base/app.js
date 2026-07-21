@@ -7,14 +7,27 @@ const navLinks = document.querySelectorAll('.nav-menu .nav-link');
 if (navToggle && navMenu) {
     const desktopNav = window.matchMedia('(min-width: 861px)');
 
-    const setNavState = (isOpen) => {
-        navMenu.classList.toggle('is-open', isOpen);
+    const setNavState = (isOpen, returnFocus = false) => {
+        const isMobile = !desktopNav.matches;
+        const shouldOpen = isMobile && isOpen;
+
+        navMenu.classList.toggle('is-open', shouldOpen);
         if (navBackdrop) {
-            navBackdrop.classList.toggle('is-open', isOpen);
+            navBackdrop.classList.toggle('is-open', shouldOpen);
         }
-        navToggle.setAttribute('aria-expanded', String(isOpen));
-        navMenu.setAttribute('aria-hidden', String(!isOpen));
-        document.body.classList.toggle('nav-open', isOpen);
+        navToggle.setAttribute('aria-expanded', String(shouldOpen));
+        navMenu.setAttribute('aria-hidden', String(isMobile && !shouldOpen));
+        navMenu.inert = isMobile && !shouldOpen;
+        document.body.classList.toggle('nav-open', shouldOpen);
+
+        if (shouldOpen) {
+            const closeButton = navMenu.querySelector('[data-nav-close]');
+            if (closeButton) {
+                closeButton.focus({ preventScroll: true });
+            }
+        } else if (returnFocus && isMobile) {
+            navToggle.focus({ preventScroll: true });
+        }
     };
 
     navToggle.addEventListener('click', () => {
@@ -23,7 +36,7 @@ if (navToggle && navMenu) {
     });
 
     navCloseTargets.forEach((target) => {
-        target.addEventListener('click', () => setNavState(false));
+        target.addEventListener('click', () => setNavState(false, true));
     });
 
     navLinks.forEach((link) => {
@@ -32,13 +45,11 @@ if (navToggle && navMenu) {
 
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape' && navMenu.classList.contains('is-open')) {
-            setNavState(false);
+            setNavState(false, true);
         }
     });
 
-    desktopNav.addEventListener('change', (event) => {
-        if (event.matches) {
-            setNavState(false);
-        }
-    });
+    desktopNav.addEventListener('change', () => setNavState(false));
+
+    setNavState(false);
 }

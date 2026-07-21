@@ -1,4 +1,41 @@
-/.env.local
-/.env.*.local
-/var/
+# Environment files and secrets
+/.env
+/.env.*
+!/.env.example
+!/.env.*.example
+/auth.json
+*.key
+*.pem
+*.p12
+*.pfx
+/config/secrets/*/*.decrypt.private.php
+
+# Symfony / Composer generated files
 /vendor/
+/var/*
+!/var/.gitkeep
+!/var/sessions/
+/var/sessions/*
+!/var/sessions/.gitkeep
+
+# Files uploaded from the admin area (keep directory placeholders)
+/public/assets/documents/*
+!/public/assets/documents/.gitkeep
+/public/assets/images/board-members/*
+!/public/assets/images/board-members/.gitkeep
+/public/assets/images/events/covers/*
+!/public/assets/images/events/covers/.gitkeep
+/public/assets/images/events/gallery/*
+!/public/assets/images/events/gallery/.gitkeep
+
+# Local tools, tests and operating-system files
+/.phpunit.result.cache
+/.phpunit.cache/
+/.idea/
+/.vscode/
+/.fleet/
+.DS_Store
+Thumbs.db
+*.log
+*.swp
+*~

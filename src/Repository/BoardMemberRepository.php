@@ -20,11 +20,27 @@ final class BoardMemberRepository extends ServiceEntityRepository
      */
     public function findAllOrdered(): array
     {
+        return $this->orderedQueryBuilder()
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return list<BoardMember>
+     */
+    public function findPreview(int $limit): array
+    {
+        return $this->orderedQueryBuilder()
+            ->setMaxResults(max(1, $limit))
+            ->getQuery()
+            ->getResult();
+    }
+
+    private function orderedQueryBuilder(): \Doctrine\ORM\QueryBuilder
+    {
         return $this->createQueryBuilder('boardMember')
             ->orderBy('boardMember.displayOrder', 'ASC')
             ->addOrderBy('boardMember.lastName', 'ASC')
-            ->addOrderBy('boardMember.firstName', 'ASC')
-            ->getQuery()
-            ->getResult();
+            ->addOrderBy('boardMember.firstName', 'ASC');
     }
 }

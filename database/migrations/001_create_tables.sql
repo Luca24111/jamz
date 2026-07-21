@@ -8,7 +8,8 @@ CREATE TABLE IF NOT EXISTS membri_consiglio (
     bio TEXT NOT NULL,
     email VARCHAR(190) NOT NULL,
     foto VARCHAR(255) NOT NULL,
-    ordine_visualizzazione INT UNSIGNED NOT NULL DEFAULT 0
+    ordine_visualizzazione INT UNSIGNED NOT NULL DEFAULT 0,
+    INDEX idx_membri_consiglio_ordine (ordine_visualizzazione, cognome, nome)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS eventi (
@@ -30,6 +31,7 @@ CREATE TABLE IF NOT EXISTS evento_immagini (
     url_immagine VARCHAR(255) NOT NULL,
     alt_text VARCHAR(255) NULL,
     ordine_visualizzazione INT UNSIGNED NOT NULL DEFAULT 0,
+    INDEX idx_evento_immagini_ordine (evento_id, ordine_visualizzazione),
     CONSTRAINT fk_evento_immagini_evento
         FOREIGN KEY (evento_id) REFERENCES eventi (id)
         ON DELETE CASCADE
@@ -45,7 +47,8 @@ CREATE TABLE IF NOT EXISTS associati (
     strumento VARCHAR(120) NOT NULL,
     bio_breve TEXT NOT NULL,
     email VARCHAR(190) NULL,
-    visibile_albo TINYINT(1) NOT NULL DEFAULT 1
+    visibile_albo TINYINT(1) NOT NULL DEFAULT 1,
+    INDEX idx_associati_albo_ordine (visibile_albo, cognome, nome)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS richieste_musicisti (

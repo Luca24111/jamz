@@ -159,6 +159,22 @@ final class EventRepository extends ServiceEntityRepository
             ->getOneOrNullResult();
     }
 
+    /**
+     * @return list<Event>
+     */
+    public function findRelated(Event $event, int $limit = 3): array
+    {
+        return $this->createQueryBuilder('evt')
+            ->andWhere('evt.id != :currentId')
+            ->andWhere($event->isPast() ? 'evt.eventDate < :now' : 'evt.eventDate >= :now')
+            ->setParameter('currentId', $event->getId())
+            ->setParameter('now', new \DateTimeImmutable('now'))
+            ->orderBy('evt.eventDate', $event->isPast() ? 'DESC' : 'ASC')
+            ->setMaxResults(max(1, $limit))
+            ->getQuery()
+            ->getResult();
+    }
+
     private function applyCalendarFilters(QueryBuilder $qb, bool $past, ?int $year, ?int $month): void
     {
         if ($year !== null && $month !== null) {

@@ -8,7 +8,9 @@ use App\Repository\MusicianApplicationRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MusicianApplicationRepository::class)]
-#[ORM\Table(name: 'richieste_musicisti')]
+#[ORM\Table(name: 'richieste_musicisti', indexes: [
+    new ORM\Index(name: 'idx_richieste_musicisti_stato', columns: ['stato']),
+])]
 class MusicianApplication
 {
     #[ORM\Id]

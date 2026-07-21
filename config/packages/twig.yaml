@@ -1,5 +1,7 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
+    date:
+        timezone: '%env(APP_TIMEZONE)%'
     globals:
         app_name: '%env(APP_NAME)%'
         navigation:

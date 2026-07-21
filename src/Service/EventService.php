@@ -89,6 +89,11 @@ final class EventService
         return $this->repository->findDetailedById($id);
     }
 
+    public function getRelatedEvents(Event $event, int $limit = 3): array
+    {
+        return $this->repository->findRelated($event, $limit);
+    }
+
     /**
      * @return array<string, int>
      */

@@ -9,7 +9,9 @@ use App\Repository\BoardMemberRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: BoardMemberRepository::class)]
-#[ORM\Table(name: 'membri_consiglio')]
+#[ORM\Table(name: 'membri_consiglio', indexes: [
+    new ORM\Index(name: 'idx_membri_consiglio_ordine', columns: ['ordine_visualizzazione', 'cognome', 'nome']),
+])]
 class BoardMember
 {
     use ResolvesPublicAssetPath;

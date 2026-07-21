@@ -12,7 +12,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EventRepository::class)]
-#[ORM\Table(name: 'eventi')]
+#[ORM\Table(name: 'eventi', indexes: [
+    new ORM\Index(name: 'idx_eventi_data_evento', columns: ['data_evento']),
+])]
 class Event
 {
     use ResolvesPublicAssetPath;

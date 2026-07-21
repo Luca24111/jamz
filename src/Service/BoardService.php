@@ -19,7 +19,7 @@ final class BoardService
 
     public function getPreview(int $limit = 3): array
     {
-        return array_slice($this->repository->findAllOrdered(), 0, $limit);
+        return $this->repository->findPreview($limit);
     }
 
     public function countMembers(): int

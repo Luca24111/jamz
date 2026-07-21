@@ -9,7 +9,9 @@ use App\Repository\EventImageRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EventImageRepository::class)]
-#[ORM\Table(name: 'evento_immagini')]
+#[ORM\Table(name: 'evento_immagini', indexes: [
+    new ORM\Index(name: 'idx_evento_immagini_ordine', columns: ['evento_id', 'ordine_visualizzazione']),
+])]
 class EventImage
 {
     use ResolvesPublicAssetPath;

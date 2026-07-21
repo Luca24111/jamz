@@ -33,7 +33,7 @@
 
                     <div class="event-showcase-media{% if preview_images is empty %} has-no-previews{% endif %}">
                         <a class="event-showcase-main" href="{{ detail_path }}">
-                            <img src="{{ asset(event.coverImagePath) }}" alt="Copertina evento {{ event.title }}">
+                            <img src="{{ asset(event.coverImagePath) }}" alt="Copertina evento {{ event.title }}" width="1600" height="1000" loading="{{ loop.first ? 'eager' : 'lazy' }}" decoding="async"{% if loop.first %} fetchpriority="high"{% endif %}>
                             <div class="event-showcase-overlay">
                                 <span class="event-showcase-state" data-state="{% if event.isPast %}past{% else %}future{% endif %}">
                                     {% if event.isPast %}Archivio{% else %}Live{% endif %}
@@ -47,9 +47,9 @@
                                 {% for image in preview_images %}
                                     <a class="event-showcase-preview" href="{{ detail_path }}">
                                         {% if image.isVideo %}
-                                            <video src="{{ asset(image.publicPath) }}" muted playsinline preload="metadata" aria-label="{{ image.altText }}"></video>
+                                            <video src="{{ asset(image.publicPath) }}" muted playsinline preload="none" aria-label="{{ image.altText }}"></video>
                                         {% else %}
-                                            <img src="{{ asset(image.publicPath) }}" alt="{{ image.altText }}">
+                                            <img src="{{ asset(image.publicPath) }}" alt="{{ image.altText }}" width="1000" height="1000" loading="lazy" decoding="async">
                                         {% endif %}
                                         <span class="event-showcase-preview-caption">
                                             {{ image.altText }}
@@ -62,7 +62,7 @@
 
                     <div class="event-showcase-mobile-carousel" aria-label="Anteprime evento {{ event.title }}">
                         <a class="event-showcase-mobile-slide is-cover" href="{{ detail_path }}">
-                            <img src="{{ asset(event.coverImagePath) }}" alt="Copertina evento {{ event.title }}">
+                            <img src="{{ asset(event.coverImagePath) }}" alt="Copertina evento {{ event.title }}" width="1600" height="1000" loading="lazy" decoding="async">
                             <span class="event-showcase-mobile-slide-meta">
                                 <span class="event-showcase-state" data-state="{% if event.isPast %}past{% else %}future{% endif %}">
                                     {% if event.isPast %}Archivio{% else %}Live{% endif %}
@@ -74,9 +74,9 @@
                         {% for image in preview_images %}
                             <a class="event-showcase-mobile-slide" href="{{ detail_path }}">
                                 {% if image.isVideo %}
-                                    <video src="{{ asset(image.publicPath) }}" muted playsinline preload="metadata" aria-label="{{ image.altText }}"></video>
+                                    <video src="{{ asset(image.publicPath) }}" muted playsinline preload="none" aria-label="{{ image.altText }}"></video>
                                 {% else %}
-                                    <img src="{{ asset(image.publicPath) }}" alt="{{ image.altText }}">
+                                    <img src="{{ asset(image.publicPath) }}" alt="{{ image.altText }}" width="1000" height="1000" loading="lazy" decoding="async">
                                 {% endif %}
                                 <span class="event-showcase-mobile-caption">{{ image.altText }}</span>
                             </a>

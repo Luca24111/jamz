@@ -8,7 +8,9 @@ use App\Repository\AssociateRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AssociateRepository::class)]
-#[ORM\Table(name: 'associati')]
+#[ORM\Table(name: 'associati', indexes: [
+    new ORM\Index(name: 'idx_associati_albo_ordine', columns: ['visibile_albo', 'cognome', 'nome']),
+])]
 class Associate
 {
     #[ORM\Id]

@@ -1,9 +1,9 @@
+Options -Indexes
 RewriteEngine On
 
-# Se la richiesta punta già alla cartella pubblica, la lasciamo invariata.
-RewriteRule ^public/ - [L]
+# Impedisce l'accesso diretto a file nascosti e configurazioni locali.
+RewriteRule "(^|/)\.(?!well-known(?:/|$))" - [F,L]
 
-# Tutto il traffico pubblico passa da /public.
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
+# Compatibilita con hosting che non consentono di impostare public/ come web root.
+RewriteRule ^public/ - [L]
 RewriteRule ^(.*)$ public/$1 [L]

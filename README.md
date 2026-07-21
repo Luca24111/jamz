@@ -33,9 +33,10 @@ composer install
 
 ```bash
 cp .env.example .env
+cp .env.dev.example .env.dev
 ```
 
-3. Aggiorna `DATABASE_URL` in `.env`.
+3. Aggiorna `DATABASE_URL` in `.env.dev`. I file ambiente reali sono ignorati da Git; i file `*.example` sono gli unici template versionati.
 
 Su Ubuntu evita `root` come utente applicativo: spesso `root@localhost` usa `auth_socket` e non accetta login password da PDO o `mysql -p`.
 
@@ -44,7 +45,9 @@ Su Ubuntu evita `root` come utente applicativo: spesso `root@localhost` usa `aut
 ```bash
 sudo mysql <<'SQL'
 CREATE DATABASE IF NOT EXISTS jamz CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER IF NOT EXISTS 'jamz'@'localhost' IDENTIFIED BY 'jamzpass';
 CREATE USER IF NOT EXISTS 'jamz'@'127.0.0.1' IDENTIFIED BY 'jamzpass';
+GRANT ALL PRIVILEGES ON jamz.* TO 'jamz'@'localhost';
 GRANT ALL PRIVILEGES ON jamz.* TO 'jamz'@'127.0.0.1';
 FLUSH PRIVILEGES;
 SQL
@@ -88,6 +91,18 @@ Aggiornare lo schema dopo modifiche alle entity:
 php bin/console doctrine:schema:update --force --complete
 ```
 
+## Messa online
+
+La guida completa e la configurazione Apache di esempio sono in [DEPLOYMENT.md](DEPLOYMENT.md). In sintesi:
+
+```bash
+cp .env.prod.example .env.prod
+composer install --no-dev --prefer-dist --no-interaction --optimize-autoloader
+APP_ENV=prod APP_DEBUG=0 php bin/console cache:clear
+```
+
+Compila `.env.prod` solo sul server, dopo aver creato il database, e imposta la document root su `public/`.
+
 ## Dati gestiti da database
 
 - `membri_consiglio`
@@ -102,6 +117,7 @@ php bin/console doctrine:schema:update --force --complete
 - I 500 su molte pagine erano causati dall’architettura custom precedente e dall’assenza del runtime Symfony/Doctrine richiesto.
 - Le entity Doctrine espongono getter compatibili con Twig, così le view non vanno più in errore durante il rendering.
 - Il form `Suona con noi` valida lato server, persiste tramite Doctrine e scrive la notifica su `var/log/mail.log` quando `MAIL_TRANSPORT=log`.
+- Il form pubblico è protetto da token CSRF; in produzione le sessioni usano cookie `Secure`, `HttpOnly` e `SameSite=Lax`.
 - Il CSS condiviso resta in `public/css/base/app.css`; ogni pagina ha il proprio CSS/JS dedicato.
 
 ## Punti da confermare

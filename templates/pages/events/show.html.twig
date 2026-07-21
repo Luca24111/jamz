@@ -12,7 +12,7 @@
 
     <section class="shell event-detail-grid section-spacing">
         <article class="event-detail-main">
-            <img src="{{ asset(event.coverImagePath) }}" alt="Copertina evento {{ event.title }}" class="event-detail-cover">
+            <img src="{{ asset(event.coverImagePath) }}" alt="Copertina evento {{ event.title }}" class="event-detail-cover" width="1600" height="1000" fetchpriority="high" decoding="async">
 
             <div class="event-detail-meta">
                 <span>{{ event.formattedDate }}</span>
@@ -39,7 +39,7 @@
                             {% if image.isVideo %}
                                 <video src="{{ asset(image.publicPath) }}" controls preload="metadata" playsinline></video>
                             {% else %}
-                                <img src="{{ asset(image.publicPath) }}" alt="{{ image.altText }}">
+                                <img src="{{ asset(image.publicPath) }}" alt="{{ image.altText }}" width="1600" height="1000" loading="lazy" decoding="async">
                             {% endif %}
                             <figcaption>{{ image.altText }}</figcaption>
                         </figure>

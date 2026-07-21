@@ -11,6 +11,10 @@
 
     <section class="shell form-shell section-spacing">
         <form class="application-form" method="post" action="/suona-con-noi" novalidate>
+            <input type="hidden" name="_token" value="{{ csrf_token('musician_application') }}">
+            {% if errors.form is defined %}
+                <div class="flash field-full" role="alert">{{ errors.form }}</div>
+            {% endif %}
             <div class="form-grid">
                 <label>
                     <span>Nome</span>

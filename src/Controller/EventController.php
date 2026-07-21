@@ -50,9 +50,7 @@ final class EventController extends BaseController
 
         return $this->render('pages/events/show.html.twig', $this->page([
             'event' => $event,
-            'related_events' => $event->isPast()
-                ? array_slice($this->eventService->getPastEvents(null, null, 'desc'), 0, 3)
-                : array_slice($this->eventService->getFutureEvents(null, null, 'asc'), 0, 3),
+            'related_events' => $this->eventService->getRelatedEvents($event),
         ], $event->getTitle(), 'evento-dettaglio.css', 'evento-dettaglio.js'));
     }
 }

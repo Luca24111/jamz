@@ -36,6 +36,10 @@ final class MusicianApplicationController extends BaseController
     {
         $result = $this->applicationService->validate($request->request->all());
 
+        if (!$this->isCsrfTokenValid('musician_application', (string) $request->request->get('_token'))) {
+            $result['errors']['form'] = 'La sessione del modulo è scaduta. Ricarica la pagina e riprova.';
+        }
+
         if ($result['errors'] !== []) {
             return $this->render('pages/musician/index.html.twig', $this->page([
                 'errors' => $result['errors'],

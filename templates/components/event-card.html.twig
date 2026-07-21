@@ -1,6 +1,6 @@
 <article class="event-card">
     <a class="event-card-link" href="{{ path('app_events_show', { id: event.id }) }}" aria-label="Apri dettaglio evento {{ event.title }}">
-        <img src="{{ asset(event.coverImagePath) }}" alt="Copertina evento {{ event.title }}" class="event-cover">
+        <img src="{{ asset(event.coverImagePath) }}" alt="Copertina evento {{ event.title }}" class="event-cover" width="1600" height="1000" loading="lazy" decoding="async">
         <div class="event-body">
             <div class="event-meta">
                 <span>{{ event.formattedDate }}</span>
@@ -13,9 +13,9 @@
                 <div class="event-gallery">
                     {% for image in event.images %}
                         {% if image.isVideo %}
-                            <video src="{{ asset(image.publicPath) }}" muted playsinline preload="metadata" aria-label="{{ image.altText }}"></video>
+                            <video src="{{ asset(image.publicPath) }}" muted playsinline preload="none" aria-label="{{ image.altText }}"></video>
                         {% else %}
-                            <img src="{{ asset(image.publicPath) }}" alt="{{ image.altText }}">
+                            <img src="{{ asset(image.publicPath) }}" alt="{{ image.altText }}" width="1000" height="1000" loading="lazy" decoding="async">
                         {% endif %}
                     {% endfor %}
                 </div>
