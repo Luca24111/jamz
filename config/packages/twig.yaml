@@ -16,8 +16,6 @@ twig:
             - { label: 'Suona con noi', path: '/suona-con-noi' }
         social_links:
             email: '%env(MAIL_TO)%'
-            instagram: '%env(SOCIAL_INSTAGRAM)%'
-            telegram: '%env(SOCIAL_TELEGRAM)%'
 
 when@test:
     twig:
