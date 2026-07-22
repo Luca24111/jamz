@@ -1,5 +1,10 @@
--- Seed di sviluppo completo e ri-eseguibile.
--- Pulisce le tabelle e inserisce almeno 5 record per ogni entità persistita.
+-- Seed MySQL di sviluppo completo e ri-eseguibile.
+-- Pulisce le tabelle e inserisce almeno 5 record per entità, tranne admin_users
+-- che contiene un solo amministratore.
+-- Login sviluppo: admin@jamz.com / JamzAdmin2026!
+-- Non usare queste credenziali in produzione.
+
+SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 SET FOREIGN_KEY_CHECKS = 0;
 TRUNCATE TABLE admin_users;
@@ -12,7 +17,7 @@ TRUNCATE TABLE membri_consiglio;
 SET FOREIGN_KEY_CHECKS = 1;
 
 INSERT INTO admin_users (email, roles, password) VALUES
-('admin@jamz.com', '["ROLE_ADMIN"]', '$2y$10$nQR3nCD17mpB/ESOsHytluYOQQX9F0MtuvI.wkHel1Y0H2mymu9dW');
+('admin@jamz.com', '["ROLE_ADMIN"]', '$2y$12$YzCNQgxY2Gjcv9GgkrDeUuurEqRCN2nd0H4UktQYX/bC2dnZ.HWfm');
 
 INSERT INTO membri_consiglio (nome, cognome, ruolo, bio, email, foto, ordine_visualizzazione) VALUES
 ('Alba', 'Rossi', 'Presidente', 'Coordina visione artistica, partnership e relazioni con il territorio. Segue i format speciali e la direzione culturale.', 'alba.rossi@jamz.local', 'assets/images/board-alba.svg', 1),
@@ -74,3 +79,12 @@ INSERT INTO documenti (tipo, titolo, nome_file, path, data_caricamento) VALUES
 ('altro', 'Regolamento interno volontari', 'regolamento-volontari-jamz.pdf', 'assets/documents/statuto-jamz.pdf', '2026-02-10'),
 ('altro', 'Codice etico eventi e ospitalita', 'codice-etico-jamz.pdf', 'assets/documents/atto-costitutivo-jamz.pdf', '2026-02-18'),
 ('altro', 'Informativa soci e trattamento dati', 'informativa-soci-jamz.pdf', 'assets/documents/statuto-jamz.pdf', '2026-03-01');
+
+-- Verifica finale: i conteggi attesi sono 1 admin e almeno 5 record per le altre entità.
+SELECT 'admin_users' AS entita, COUNT(*) AS numero_record FROM admin_users
+UNION ALL SELECT 'membri_consiglio', COUNT(*) FROM membri_consiglio
+UNION ALL SELECT 'eventi', COUNT(*) FROM eventi
+UNION ALL SELECT 'evento_immagini', COUNT(*) FROM evento_immagini
+UNION ALL SELECT 'associati', COUNT(*) FROM associati
+UNION ALL SELECT 'richieste_musicisti', COUNT(*) FROM richieste_musicisti
+UNION ALL SELECT 'documenti', COUNT(*) FROM documenti;
